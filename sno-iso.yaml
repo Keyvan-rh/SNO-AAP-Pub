@@ -1,0 +1,6 @@
+---
+- name: sno iso
+  hosts: all
+  roles: 
+    - sno
+

@@ -1,0 +1,5 @@
+---
+- name: vm creation
+  hosts: all
+  roles: 
+    - vm

@@ -1,0 +1,48 @@
+---
+# tasks file for sno
+- name: Create operator yaml files
+  template:
+    src: storage-subscription.yaml
+    dest: "{{ srcDest }}{{ID}}/storage-subscription.yaml"
+- name: Create operatorgroup yaml files
+  template:
+    src: operatorGroup-storage.yaml
+    dest: "{{ srcDest }}{{ID}}/operatorGroup-storage.yaml"
+- name: Create lvmCluster yaml files
+  template:
+    src: lvmCluster.yaml
+    dest: "{{ srcDest }}{{ID}}/lvmCluster.yaml"
+- name: Install ODF LVM Operator
+  ansible.builtin.shell:
+    chdir: "{{ srcDest }}{{ID}}"
+    cmd: "{{ item }}"
+  with_items:
+    - "oc create namespace openshift-storage"
+    - "oc create -f operatorGroup-storage.yaml"
+    - "oc create -f storage-subscription.yaml"
+  environment:
+    KUBECONFIG: '{{ srcDest }}{{ID}}/ocp/auth/kubeconfig'
+
+- name: Sleep for 300 seconds and continue with play
+  ansible.builtin.wait_for:
+    timeout: 300
+  delegate_to: localhost
+  
+- name: create lvmCluster 
+  ansible.builtin.shell:
+    chdir: "{{ srcDest }}{{ID}}"
+    cmd: "{{ item }}"
+  with_items:
+    - "oc create -f lvmCluster.yaml -n openshift-storage"
+  environment:
+    KUBECONFIG: '{{ srcDest }}{{ID}}/ocp/auth/kubeconfig'
+- name: Setup OCP registry with no persistent storage
+  ansible.builtin.shell:
+    chdir: "{{ srcDest }}{{ID}}"
+    cmd: "{{ item }}"
+  with_items:
+    - "oc patch configs.imageregistry.operator.openshift.io/cluster --type merge -p '{\"spec\":{\"defaultRoute\":true}}'"
+    - "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\":{\"managementState\":\"Managed\"}}'"
+    - "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\":{\"storage\":{\"emptyDir\":{}}}}'"
+  environment:
+    KUBECONFIG: '{{ srcDest }}{{ID}}/ocp/auth/kubeconfig'

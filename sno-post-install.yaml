@@ -1,0 +1,5 @@
+---
+- name: sno post installation 
+  hosts: all
+  roles: 
+    - sno-post-install

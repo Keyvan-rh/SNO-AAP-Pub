@@ -1,0 +1,7 @@
+---
+# defaults file for ansible-automation-platform
+clusterName: sno
+ID: '3'
+BaseMac: '52:50:56:11:44:'
+snoCloneVimID: '104'
+snoVimid: '30'

@@ -1,0 +1,2527 @@
+{
+     "users": [
+          {
+               "username": "admin",
+               "first_name": "",
+               "last_name": "",
+               "email": "test@example.com",
+               "is_superuser": true,
+               "is_system_auditor": false,
+               "related": {
+                    "roles": [
+                         {
+                              "name": "Admin",
+                              "type": "role",
+                              "content_object": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "sno-iso",
+                                   "type": "job_template"
+                              }
+                         },
+                         {
+                              "name": "Admin",
+                              "type": "role",
+                              "content_object": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "sno-vm",
+                                   "type": "job_template"
+                              }
+                         },
+                         {
+                              "name": "Admin",
+                              "type": "role",
+                              "content_object": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "sno-prep",
+                                   "type": "job_template"
+                              }
+                         },
+                         {
+                              "name": "Admin",
+                              "type": "role",
+                              "content_object": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "SNO",
+                                   "type": "project"
+                              }
+                         },
+                         {
+                              "name": "Admin",
+                              "type": "role",
+                              "content_object": {
+                                   "organization": null,
+                                   "name": "infra",
+                                   "credential_type": {
+                                        "name": "Machine",
+                                        "kind": "ssh",
+                                        "type": "credential_type"
+                                   },
+                                   "type": "credential"
+                              }
+                         },
+                         {
+                              "name": "System Administrator",
+                              "type": "role"
+                         }
+                    ]
+               },
+               "natural_key": {
+                    "username": "admin",
+                    "type": "user"
+               }
+          }
+     ],
+     "organizations": [
+          {
+               "name": "Default",
+               "description": "",
+               "max_hosts": 0,
+               "default_environment": null,
+               "related": {
+                    "execution_environments": [],
+                    "notification_templates": [],
+                    "notification_templates_started": [],
+                    "notification_templates_success": [],
+                    "notification_templates_error": [],
+                    "notification_templates_approvals": []
+               },
+               "natural_key": {
+                    "name": "Default",
+                    "type": "organization"
+               }
+          },
+          {
+               "name": "home-lab",
+               "description": "",
+               "max_hosts": 0,
+               "default_environment": null,
+               "related": {
+                    "execution_environments": [],
+                    "notification_templates": [],
+                    "notification_templates_started": [],
+                    "notification_templates_success": [],
+                    "notification_templates_error": [],
+                    "notification_templates_approvals": []
+               },
+               "natural_key": {
+                    "name": "home-lab",
+                    "type": "organization"
+               }
+          }
+     ],
+     "teams": [],
+     "credential_types": [
+          {
+               "name": "Amazon Web Services",
+               "description": "",
+               "kind": "cloud",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "username",
+                              "label": "Access Key",
+                              "type": "string"
+                         },
+                         {
+                              "id": "password",
+                              "label": "Secret Key",
+                              "type": "string",
+                              "secret": true
+                         },
+                         {
+                              "id": "security_token",
+                              "label": "STS Token",
+                              "type": "string",
+                              "secret": true,
+                              "help_text": "Security Token Service (STS) is a web service that enables you to request temporary, limited-privilege credentials for AWS Identity and Access Management (IAM) users."
+                         }
+                    ],
+                    "required": [
+                         "username",
+                         "password"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "Amazon Web Services",
+                    "kind": "cloud",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Google Compute Engine",
+               "description": "",
+               "kind": "cloud",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "username",
+                              "label": "Service Account Email Address",
+                              "type": "string",
+                              "help_text": "The email address assigned to the Google Compute Engine service account."
+                         },
+                         {
+                              "id": "project",
+                              "label": "Project",
+                              "type": "string",
+                              "help_text": "The Project ID is the GCE assigned identification. It is often constructed as three words or two words followed by a three-digit number. Examples: project-id-000 and another-project-id"
+                         },
+                         {
+                              "id": "ssh_key_data",
+                              "label": "RSA Private Key",
+                              "type": "string",
+                              "format": "ssh_private_key",
+                              "secret": true,
+                              "multiline": true,
+                              "help_text": "Paste the contents of the PEM file associated with the service account email."
+                         }
+                    ],
+                    "required": [
+                         "username",
+                         "ssh_key_data"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "Google Compute Engine",
+                    "kind": "cloud",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Microsoft Azure Resource Manager",
+               "description": "",
+               "kind": "cloud",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "subscription",
+                              "label": "Subscription ID",
+                              "type": "string",
+                              "help_text": "Subscription ID is an Azure construct, which is mapped to a username."
+                         },
+                         {
+                              "id": "username",
+                              "label": "Username",
+                              "type": "string"
+                         },
+                         {
+                              "id": "password",
+                              "label": "Password",
+                              "type": "string",
+                              "secret": true
+                         },
+                         {
+                              "id": "client",
+                              "label": "Client ID",
+                              "type": "string"
+                         },
+                         {
+                              "id": "secret",
+                              "label": "Client Secret",
+                              "type": "string",
+                              "secret": true
+                         },
+                         {
+                              "id": "tenant",
+                              "label": "Tenant ID",
+                              "type": "string"
+                         },
+                         {
+                              "id": "cloud_environment",
+                              "label": "Azure Cloud Environment",
+                              "type": "string",
+                              "help_text": "Environment variable AZURE_CLOUD_ENVIRONMENT when using Azure GovCloud or Azure stack."
+                         }
+                    ],
+                    "required": [
+                         "subscription"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "Microsoft Azure Resource Manager",
+                    "kind": "cloud",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "OpenStack",
+               "description": "",
+               "kind": "cloud",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "username",
+                              "label": "Username",
+                              "type": "string"
+                         },
+                         {
+                              "id": "password",
+                              "label": "Password (API Key)",
+                              "type": "string",
+                              "secret": true
+                         },
+                         {
+                              "id": "host",
+                              "label": "Host (Authentication URL)",
+                              "type": "string",
+                              "help_text": "The host to authenticate with.  For example, https://openstack.business.com/v2.0/"
+                         },
+                         {
+                              "id": "project",
+                              "label": "Project (Tenant Name)",
+                              "type": "string"
+                         },
+                         {
+                              "id": "project_domain_name",
+                              "label": "Project (Domain Name)",
+                              "type": "string"
+                         },
+                         {
+                              "id": "domain",
+                              "label": "Domain Name",
+                              "type": "string",
+                              "help_text": "OpenStack domains define administrative boundaries. It is only needed for Keystone v3 authentication URLs. Refer to the documentation for common scenarios."
+                         },
+                         {
+                              "id": "region",
+                              "label": "Region Name",
+                              "type": "string",
+                              "help_text": "For some cloud providers, like OVH, region must be specified"
+                         },
+                         {
+                              "id": "verify_ssl",
+                              "label": "Verify SSL",
+                              "type": "boolean",
+                              "default": true
+                         }
+                    ],
+                    "required": [
+                         "username",
+                         "password",
+                         "host",
+                         "project"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "OpenStack",
+                    "kind": "cloud",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Red Hat Ansible Automation Platform",
+               "description": "",
+               "kind": "cloud",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "host",
+                              "label": "Red Hat Ansible Automation Platform",
+                              "type": "string",
+                              "help_text": "Red Hat Ansible Automation Platform base URL to authenticate with."
+                         },
+                         {
+                              "id": "username",
+                              "label": "Username",
+                              "type": "string",
+                              "help_text": "Red Hat Ansible Automation Platform username id to authenticate as.This should not be set if an OAuth token is being used."
+                         },
+                         {
+                              "id": "password",
+                              "label": "Password",
+                              "type": "string",
+                              "secret": true
+                         },
+                         {
+                              "id": "oauth_token",
+                              "label": "OAuth Token",
+                              "type": "string",
+                              "secret": true,
+                              "help_text": "An OAuth token to use to authenticate with.This should not be set if username/password are being used."
+                         },
+                         {
+                              "id": "verify_ssl",
+                              "label": "Verify SSL",
+                              "type": "boolean",
+                              "secret": false
+                         }
+                    ],
+                    "required": [
+                         "host"
+                    ]
+               },
+               "injectors": {
+                    "env": {
+                         "TOWER_HOST": "{{host}}",
+                         "TOWER_USERNAME": "{{username}}",
+                         "TOWER_PASSWORD": "{{password}}",
+                         "TOWER_VERIFY_SSL": "{{verify_ssl}}",
+                         "TOWER_OAUTH_TOKEN": "{{oauth_token}}",
+                         "CONTROLLER_HOST": "{{host}}",
+                         "CONTROLLER_USERNAME": "{{username}}",
+                         "CONTROLLER_PASSWORD": "{{password}}",
+                         "CONTROLLER_VERIFY_SSL": "{{verify_ssl}}",
+                         "CONTROLLER_OAUTH_TOKEN": "{{oauth_token}}"
+                    }
+               },
+               "natural_key": {
+                    "name": "Red Hat Ansible Automation Platform",
+                    "kind": "cloud",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Red Hat Satellite 6",
+               "description": "",
+               "kind": "cloud",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "host",
+                              "label": "Satellite 6 URL",
+                              "type": "string",
+                              "help_text": "Enter the URL that corresponds to your Red Hat Satellite 6 server. For example, https://satellite.example.org"
+                         },
+                         {
+                              "id": "username",
+                              "label": "Username",
+                              "type": "string"
+                         },
+                         {
+                              "id": "password",
+                              "label": "Password",
+                              "type": "string",
+                              "secret": true
+                         }
+                    ],
+                    "required": [
+                         "host",
+                         "username",
+                         "password"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "Red Hat Satellite 6",
+                    "kind": "cloud",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Red Hat Virtualization",
+               "description": "",
+               "kind": "cloud",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "host",
+                              "label": "Host (Authentication URL)",
+                              "type": "string",
+                              "help_text": "The host to authenticate with."
+                         },
+                         {
+                              "id": "username",
+                              "label": "Username",
+                              "type": "string"
+                         },
+                         {
+                              "id": "password",
+                              "label": "Password",
+                              "type": "string",
+                              "secret": true
+                         },
+                         {
+                              "id": "ca_file",
+                              "label": "CA File",
+                              "type": "string",
+                              "help_text": "Absolute file path to the CA file to use (optional)"
+                         }
+                    ],
+                    "required": [
+                         "host",
+                         "username",
+                         "password"
+                    ]
+               },
+               "injectors": {
+                    "file": {
+                         "template": "[ovirt]\novirt_url={{host}}\novirt_username={{username}}\novirt_password={{password}}\n{% if ca_file %}ovirt_ca_file={{ca_file}}{% endif %}"
+                    },
+                    "env": {
+                         "OVIRT_INI_PATH": "{{tower.filename}}",
+                         "OVIRT_URL": "{{host}}",
+                         "OVIRT_USERNAME": "{{username}}",
+                         "OVIRT_PASSWORD": "{{password}}"
+                    }
+               },
+               "natural_key": {
+                    "name": "Red Hat Virtualization",
+                    "kind": "cloud",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "VMware vCenter",
+               "description": "",
+               "kind": "cloud",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "host",
+                              "label": "VCenter Host",
+                              "type": "string",
+                              "help_text": "Enter the hostname or IP address that corresponds to your VMware vCenter."
+                         },
+                         {
+                              "id": "username",
+                              "label": "Username",
+                              "type": "string"
+                         },
+                         {
+                              "id": "password",
+                              "label": "Password",
+                              "type": "string",
+                              "secret": true
+                         }
+                    ],
+                    "required": [
+                         "host",
+                         "username",
+                         "password"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "VMware vCenter",
+                    "kind": "cloud",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Centrify Vault Credential Provider Lookup",
+               "description": "",
+               "kind": "external",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "url",
+                              "label": "Centrify Tenant URL",
+                              "type": "string",
+                              "help_text": "Centrify Tenant URL",
+                              "format": "url"
+                         },
+                         {
+                              "id": "client_id",
+                              "label": "Centrify API User",
+                              "type": "string",
+                              "help_text": "Centrify API User, having necessary permissions as mentioned in support doc"
+                         },
+                         {
+                              "id": "client_password",
+                              "label": "Centrify API Password",
+                              "type": "string",
+                              "help_text": "Password of Centrify API User with necessary permissions",
+                              "secret": true
+                         },
+                         {
+                              "id": "oauth_application_id",
+                              "label": "OAuth2 Application ID",
+                              "type": "string",
+                              "help_text": "Application ID of the configured OAuth2 Client (defaults to 'awx')",
+                              "default": "awx"
+                         },
+                         {
+                              "id": "oauth_scope",
+                              "label": "OAuth2 Scope",
+                              "type": "string",
+                              "help_text": "Scope of the configured OAuth2 Client (defaults to 'awx')",
+                              "default": "awx"
+                         }
+                    ],
+                    "metadata": [
+                         {
+                              "id": "account-name",
+                              "label": "Account Name",
+                              "type": "string",
+                              "help_text": "Local system account or Domain account name enrolled in Centrify Vault. eg. (root or DOMAIN/Administrator)"
+                         },
+                         {
+                              "id": "system-name",
+                              "label": "System Name",
+                              "type": "string",
+                              "help_text": "Machine Name enrolled with in Centrify Portal"
+                         }
+                    ],
+                    "required": [
+                         "url",
+                         "account-name",
+                         "system-name",
+                         "client_id",
+                         "client_password"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "Centrify Vault Credential Provider Lookup",
+                    "kind": "external",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "CyberArk AIM Central Credential Provider Lookup",
+               "description": "",
+               "kind": "external",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "url",
+                              "label": "CyberArk AIM URL",
+                              "type": "string",
+                              "format": "url"
+                         },
+                         {
+                              "id": "app_id",
+                              "label": "Application ID",
+                              "type": "string",
+                              "secret": true
+                         },
+                         {
+                              "id": "client_key",
+                              "label": "Client Key",
+                              "type": "string",
+                              "secret": true,
+                              "multiline": true
+                         },
+                         {
+                              "id": "client_cert",
+                              "label": "Client Certificate",
+                              "type": "string",
+                              "secret": true,
+                              "multiline": true
+                         },
+                         {
+                              "id": "verify",
+                              "label": "Verify SSL Certificates",
+                              "type": "boolean",
+                              "default": true
+                         }
+                    ],
+                    "metadata": [
+                         {
+                              "id": "object_query",
+                              "label": "Object Query",
+                              "type": "string",
+                              "help_text": "Lookup query for the object. Ex: Safe=TestSafe;Object=testAccountName123"
+                         },
+                         {
+                              "id": "object_query_format",
+                              "label": "Object Query Format",
+                              "type": "string",
+                              "default": "Exact",
+                              "choices": [
+                                   "Exact",
+                                   "Regexp"
+                              ]
+                         },
+                         {
+                              "id": "reason",
+                              "label": "Reason",
+                              "type": "string",
+                              "help_text": "Object request reason. This is only needed if it is required by the object's policy."
+                         }
+                    ],
+                    "required": [
+                         "url",
+                         "app_id",
+                         "object_query"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "CyberArk AIM Central Credential Provider Lookup",
+                    "kind": "external",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "CyberArk Conjur Secret Lookup",
+               "description": "",
+               "kind": "external",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "url",
+                              "label": "Conjur URL",
+                              "type": "string",
+                              "format": "url"
+                         },
+                         {
+                              "id": "api_key",
+                              "label": "API Key",
+                              "type": "string",
+                              "secret": true
+                         },
+                         {
+                              "id": "account",
+                              "label": "Account",
+                              "type": "string"
+                         },
+                         {
+                              "id": "username",
+                              "label": "Username",
+                              "type": "string"
+                         },
+                         {
+                              "id": "cacert",
+                              "label": "Public Key Certificate",
+                              "type": "string",
+                              "multiline": true
+                         }
+                    ],
+                    "metadata": [
+                         {
+                              "id": "secret_path",
+                              "label": "Secret Identifier",
+                              "type": "string",
+                              "help_text": "The identifier for the secret e.g., /some/identifier"
+                         },
+                         {
+                              "id": "secret_version",
+                              "label": "Secret Version",
+                              "type": "string",
+                              "help_text": "Used to specify a specific secret version (if left empty, the latest version will be used)."
+                         }
+                    ],
+                    "required": [
+                         "url",
+                         "api_key",
+                         "account",
+                         "username"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "CyberArk Conjur Secret Lookup",
+                    "kind": "external",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "HashiCorp Vault Secret Lookup",
+               "description": "",
+               "kind": "external",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "url",
+                              "label": "Server URL",
+                              "type": "string",
+                              "format": "url",
+                              "help_text": "The URL to the HashiCorp Vault"
+                         },
+                         {
+                              "id": "token",
+                              "label": "Token",
+                              "type": "string",
+                              "secret": true,
+                              "help_text": "The access token used to authenticate to the Vault server"
+                         },
+                         {
+                              "id": "cacert",
+                              "label": "CA Certificate",
+                              "type": "string",
+                              "multiline": true,
+                              "help_text": "The CA certificate used to verify the SSL certificate of the Vault server"
+                         },
+                         {
+                              "id": "role_id",
+                              "label": "AppRole role_id",
+                              "type": "string",
+                              "multiline": false,
+                              "help_text": "The Role ID for AppRole Authentication"
+                         },
+                         {
+                              "id": "secret_id",
+                              "label": "AppRole secret_id",
+                              "type": "string",
+                              "multiline": false,
+                              "secret": true,
+                              "help_text": "The Secret ID for AppRole Authentication"
+                         },
+                         {
+                              "id": "namespace",
+                              "label": "Namespace name (Vault Enterprise only)",
+                              "type": "string",
+                              "multiline": false,
+                              "help_text": "Name of the namespace to use when authenticate and retrieve secrets"
+                         },
+                         {
+                              "id": "default_auth_path",
+                              "label": "Path to Approle Auth",
+                              "type": "string",
+                              "multiline": false,
+                              "default": "approle",
+                              "help_text": "The AppRole Authentication path to use if one isn't provided in the metadata when linking to an input field. Defaults to 'approle'"
+                         },
+                         {
+                              "id": "api_version",
+                              "label": "API Version",
+                              "choices": [
+                                   "v1",
+                                   "v2"
+                              ],
+                              "help_text": "API v1 is for static key/value lookups.  API v2 is for versioned key/value lookups.",
+                              "default": "v1"
+                         }
+                    ],
+                    "metadata": [
+                         {
+                              "id": "secret_backend",
+                              "label": "Name of Secret Backend",
+                              "type": "string",
+                              "help_text": "The name of the kv secret backend (if left empty, the first segment of the secret path will be used)."
+                         },
+                         {
+                              "id": "secret_path",
+                              "label": "Path to Secret",
+                              "type": "string",
+                              "help_text": "The path to the secret stored in the secret backend e.g, /some/secret/. It is recommended that you use the secret backend field to identify the storage backend and to use this field for locating a specific secret within that store. However, if you prefer to fully identify both the secret backend and one of its secrets using only this field, join their locations into a single path without any additional separators, e.g, /location/of/backend/some/secret."
+                         },
+                         {
+                              "id": "auth_path",
+                              "label": "Path to Auth",
+                              "type": "string",
+                              "multiline": false,
+                              "help_text": "The path where the Authentication method is mounted e.g, approle"
+                         },
+                         {
+                              "id": "secret_key",
+                              "label": "Key Name",
+                              "type": "string",
+                              "help_text": "The name of the key to look up in the secret."
+                         },
+                         {
+                              "id": "secret_version",
+                              "label": "Secret Version (v2 only)",
+                              "type": "string",
+                              "help_text": "Used to specify a specific secret version (if left empty, the latest version will be used)."
+                         }
+                    ],
+                    "required": [
+                         "url",
+                         "secret_path",
+                         "api_version",
+                         "secret_key"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "HashiCorp Vault Secret Lookup",
+                    "kind": "external",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "HashiCorp Vault Signed SSH",
+               "description": "",
+               "kind": "external",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "url",
+                              "label": "Server URL",
+                              "type": "string",
+                              "format": "url",
+                              "help_text": "The URL to the HashiCorp Vault"
+                         },
+                         {
+                              "id": "token",
+                              "label": "Token",
+                              "type": "string",
+                              "secret": true,
+                              "help_text": "The access token used to authenticate to the Vault server"
+                         },
+                         {
+                              "id": "cacert",
+                              "label": "CA Certificate",
+                              "type": "string",
+                              "multiline": true,
+                              "help_text": "The CA certificate used to verify the SSL certificate of the Vault server"
+                         },
+                         {
+                              "id": "role_id",
+                              "label": "AppRole role_id",
+                              "type": "string",
+                              "multiline": false,
+                              "help_text": "The Role ID for AppRole Authentication"
+                         },
+                         {
+                              "id": "secret_id",
+                              "label": "AppRole secret_id",
+                              "type": "string",
+                              "multiline": false,
+                              "secret": true,
+                              "help_text": "The Secret ID for AppRole Authentication"
+                         },
+                         {
+                              "id": "namespace",
+                              "label": "Namespace name (Vault Enterprise only)",
+                              "type": "string",
+                              "multiline": false,
+                              "help_text": "Name of the namespace to use when authenticate and retrieve secrets"
+                         },
+                         {
+                              "id": "default_auth_path",
+                              "label": "Path to Approle Auth",
+                              "type": "string",
+                              "multiline": false,
+                              "default": "approle",
+                              "help_text": "The AppRole Authentication path to use if one isn't provided in the metadata when linking to an input field. Defaults to 'approle'"
+                         }
+                    ],
+                    "metadata": [
+                         {
+                              "id": "public_key",
+                              "label": "Unsigned Public Key",
+                              "type": "string",
+                              "multiline": true
+                         },
+                         {
+                              "id": "secret_path",
+                              "label": "Path to Secret",
+                              "type": "string",
+                              "help_text": "The path to the secret stored in the secret backend e.g, /some/secret/. It is recommended that you use the secret backend field to identify the storage backend and to use this field for locating a specific secret within that store. However, if you prefer to fully identify both the secret backend and one of its secrets using only this field, join their locations into a single path without any additional separators, e.g, /location/of/backend/some/secret."
+                         },
+                         {
+                              "id": "auth_path",
+                              "label": "Path to Auth",
+                              "type": "string",
+                              "multiline": false,
+                              "help_text": "The path where the Authentication method is mounted e.g, approle"
+                         },
+                         {
+                              "id": "role",
+                              "label": "Role Name",
+                              "type": "string",
+                              "help_text": "The name of the role used to sign."
+                         },
+                         {
+                              "id": "valid_principals",
+                              "label": "Valid Principals",
+                              "type": "string",
+                              "help_text": "Valid principals (either usernames or hostnames) that the certificate should be signed for."
+                         }
+                    ],
+                    "required": [
+                         "url",
+                         "secret_path",
+                         "public_key",
+                         "role"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "HashiCorp Vault Signed SSH",
+                    "kind": "external",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Microsoft Azure Key Vault",
+               "description": "",
+               "kind": "external",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "url",
+                              "label": "Vault URL (DNS Name)",
+                              "type": "string",
+                              "format": "url"
+                         },
+                         {
+                              "id": "client",
+                              "label": "Client ID",
+                              "type": "string"
+                         },
+                         {
+                              "id": "secret",
+                              "label": "Client Secret",
+                              "type": "string",
+                              "secret": true
+                         },
+                         {
+                              "id": "tenant",
+                              "label": "Tenant ID",
+                              "type": "string"
+                         },
+                         {
+                              "id": "cloud_name",
+                              "label": "Cloud Environment",
+                              "help_text": "Specify which azure cloud environment to use.",
+                              "choices": [
+                                   "AzureCloud",
+                                   "AzureGermanCloud",
+                                   "AzureUSGovernment",
+                                   "AzureChinaCloud"
+                              ],
+                              "default": "AzureCloud"
+                         }
+                    ],
+                    "metadata": [
+                         {
+                              "id": "secret_field",
+                              "label": "Secret Name",
+                              "type": "string",
+                              "help_text": "The name of the secret to look up."
+                         },
+                         {
+                              "id": "secret_version",
+                              "label": "Secret Version",
+                              "type": "string",
+                              "help_text": "Used to specify a specific secret version (if left empty, the latest version will be used)."
+                         }
+                    ],
+                    "required": [
+                         "url",
+                         "client",
+                         "secret",
+                         "tenant",
+                         "secret_field"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "Microsoft Azure Key Vault",
+                    "kind": "external",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Thycotic DevOps Secrets Vault",
+               "description": "",
+               "kind": "external",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "tenant",
+                              "label": "Tenant",
+                              "help_text": "The tenant e.g. \"ex\" when the URL is https://ex.secretservercloud.com",
+                              "type": "string"
+                         },
+                         {
+                              "id": "tld",
+                              "label": "Top-level Domain (TLD)",
+                              "help_text": "The TLD of the tenant e.g. \"com\" when the URL is https://ex.secretservercloud.com",
+                              "choices": [
+                                   "ca",
+                                   "com",
+                                   "com.au",
+                                   "com.sg",
+                                   "eu"
+                              ],
+                              "default": "com"
+                         },
+                         {
+                              "id": "client_id",
+                              "label": "Client ID",
+                              "type": "string"
+                         },
+                         {
+                              "id": "client_secret",
+                              "label": "Client Secret",
+                              "type": "string",
+                              "secret": true
+                         }
+                    ],
+                    "metadata": [
+                         {
+                              "id": "path",
+                              "label": "Secret Path",
+                              "type": "string",
+                              "help_text": "The secret path e.g. /test/secret1"
+                         }
+                    ],
+                    "required": [
+                         "tenant",
+                         "client_id",
+                         "client_secret",
+                         "path"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "Thycotic DevOps Secrets Vault",
+                    "kind": "external",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Thycotic Secret Server",
+               "description": "",
+               "kind": "external",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "server_url",
+                              "label": "Secret Server URL",
+                              "help_text": "The Base URL of Secret Server e.g. https://myserver/SecretServer or https://mytenant.secretservercloud.com",
+                              "type": "string"
+                         },
+                         {
+                              "id": "username",
+                              "label": "Username",
+                              "help_text": "The (Application) user username",
+                              "type": "string"
+                         },
+                         {
+                              "id": "password",
+                              "label": "Password",
+                              "help_text": "The corresponding password",
+                              "type": "string",
+                              "secret": true
+                         }
+                    ],
+                    "metadata": [
+                         {
+                              "id": "secret_id",
+                              "label": "Secret ID",
+                              "help_text": "The integer ID of the secret",
+                              "type": "string"
+                         },
+                         {
+                              "id": "secret_field",
+                              "label": "Secret Field",
+                              "help_text": "The field to extract from the secret",
+                              "type": "string"
+                         }
+                    ],
+                    "required": [
+                         "server_url",
+                         "username",
+                         "password",
+                         "secret_id",
+                         "secret_field"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "Thycotic Secret Server",
+                    "kind": "external",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Ansible Galaxy/Automation Hub API Token",
+               "description": "",
+               "kind": "galaxy",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "url",
+                              "label": "Galaxy Server URL",
+                              "type": "string",
+                              "help_text": "The URL of the Galaxy instance to connect to."
+                         },
+                         {
+                              "id": "auth_url",
+                              "label": "Auth Server URL",
+                              "type": "string",
+                              "help_text": "The URL of a Keycloak server token_endpoint, if using SSO auth."
+                         },
+                         {
+                              "id": "token",
+                              "label": "API Token",
+                              "type": "string",
+                              "secret": true,
+                              "help_text": "A token to use for authentication against the Galaxy instance."
+                         }
+                    ],
+                    "required": [
+                         "url"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "Ansible Galaxy/Automation Hub API Token",
+                    "kind": "galaxy",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Insights",
+               "description": "",
+               "kind": "insights",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "username",
+                              "label": "Username",
+                              "type": "string"
+                         },
+                         {
+                              "id": "password",
+                              "label": "Password",
+                              "type": "string",
+                              "secret": true
+                         }
+                    ],
+                    "required": [
+                         "username",
+                         "password"
+                    ]
+               },
+               "injectors": {
+                    "extra_vars": {
+                         "scm_username": "{{username}}",
+                         "scm_password": "{{password}}"
+                    },
+                    "env": {
+                         "INSIGHTS_USER": "{{username}}",
+                         "INSIGHTS_PASSWORD": "{{password}}"
+                    }
+               },
+               "natural_key": {
+                    "name": "Insights",
+                    "kind": "insights",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "OpenShift or Kubernetes API Bearer Token",
+               "description": "",
+               "kind": "kubernetes",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "host",
+                              "label": "OpenShift or Kubernetes API Endpoint",
+                              "type": "string",
+                              "help_text": "The OpenShift or Kubernetes API Endpoint to authenticate with."
+                         },
+                         {
+                              "id": "bearer_token",
+                              "label": "API authentication bearer token",
+                              "type": "string",
+                              "secret": true
+                         },
+                         {
+                              "id": "verify_ssl",
+                              "label": "Verify SSL",
+                              "type": "boolean",
+                              "default": true
+                         },
+                         {
+                              "id": "ssl_ca_cert",
+                              "label": "Certificate Authority data",
+                              "type": "string",
+                              "secret": true,
+                              "multiline": true
+                         }
+                    ],
+                    "required": [
+                         "host",
+                         "bearer_token"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "OpenShift or Kubernetes API Bearer Token",
+                    "kind": "kubernetes",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Network",
+               "description": "",
+               "kind": "net",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "username",
+                              "label": "Username",
+                              "type": "string"
+                         },
+                         {
+                              "id": "password",
+                              "label": "Password",
+                              "type": "string",
+                              "secret": true
+                         },
+                         {
+                              "id": "ssh_key_data",
+                              "label": "SSH Private Key",
+                              "type": "string",
+                              "format": "ssh_private_key",
+                              "secret": true,
+                              "multiline": true
+                         },
+                         {
+                              "id": "ssh_key_unlock",
+                              "label": "Private Key Passphrase",
+                              "type": "string",
+                              "secret": true
+                         },
+                         {
+                              "id": "authorize",
+                              "label": "Authorize",
+                              "type": "boolean"
+                         },
+                         {
+                              "id": "authorize_password",
+                              "label": "Authorize Password",
+                              "type": "string",
+                              "secret": true
+                         }
+                    ],
+                    "dependencies": {
+                         "authorize_password": [
+                              "authorize"
+                         ]
+                    },
+                    "required": [
+                         "username"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "Network",
+                    "kind": "net",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Container Registry",
+               "description": "",
+               "kind": "registry",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "host",
+                              "label": "Authentication URL",
+                              "type": "string",
+                              "help_text": "Authentication endpoint for the container registry.",
+                              "default": "quay.io"
+                         },
+                         {
+                              "id": "username",
+                              "label": "Username",
+                              "type": "string"
+                         },
+                         {
+                              "id": "password",
+                              "label": "Password or Token",
+                              "type": "string",
+                              "secret": true,
+                              "help_text": "A password or token used to authenticate with"
+                         },
+                         {
+                              "id": "verify_ssl",
+                              "label": "Verify SSL",
+                              "type": "boolean",
+                              "default": true
+                         }
+                    ],
+                    "required": [
+                         "host"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "Container Registry",
+                    "kind": "registry",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Source Control",
+               "description": "",
+               "kind": "scm",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "username",
+                              "label": "Username",
+                              "type": "string"
+                         },
+                         {
+                              "id": "password",
+                              "label": "Password",
+                              "type": "string",
+                              "secret": true
+                         },
+                         {
+                              "id": "ssh_key_data",
+                              "label": "SCM Private Key",
+                              "type": "string",
+                              "format": "ssh_private_key",
+                              "secret": true,
+                              "multiline": true
+                         },
+                         {
+                              "id": "ssh_key_unlock",
+                              "label": "Private Key Passphrase",
+                              "type": "string",
+                              "secret": true
+                         }
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "Source Control",
+                    "kind": "scm",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Machine",
+               "description": "",
+               "kind": "ssh",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "username",
+                              "label": "Username",
+                              "type": "string"
+                         },
+                         {
+                              "id": "password",
+                              "label": "Password",
+                              "type": "string",
+                              "secret": true,
+                              "ask_at_runtime": true
+                         },
+                         {
+                              "id": "ssh_key_data",
+                              "label": "SSH Private Key",
+                              "type": "string",
+                              "format": "ssh_private_key",
+                              "secret": true,
+                              "multiline": true
+                         },
+                         {
+                              "id": "ssh_public_key_data",
+                              "label": "Signed SSH Certificate",
+                              "type": "string",
+                              "multiline": true,
+                              "secret": true
+                         },
+                         {
+                              "id": "ssh_key_unlock",
+                              "label": "Private Key Passphrase",
+                              "type": "string",
+                              "secret": true,
+                              "ask_at_runtime": true
+                         },
+                         {
+                              "id": "become_method",
+                              "label": "Privilege Escalation Method",
+                              "type": "string",
+                              "help_text": "Specify a method for \"become\" operations. This is equivalent to specifying the --become-method Ansible parameter."
+                         },
+                         {
+                              "id": "become_username",
+                              "label": "Privilege Escalation Username",
+                              "type": "string"
+                         },
+                         {
+                              "id": "become_password",
+                              "label": "Privilege Escalation Password",
+                              "type": "string",
+                              "secret": true,
+                              "ask_at_runtime": true
+                         }
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "Machine",
+                    "kind": "ssh",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "GitHub Personal Access Token",
+               "description": "",
+               "kind": "token",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "token",
+                              "label": "Token",
+                              "type": "string",
+                              "secret": true,
+                              "help_text": "This token needs to come from your profile settings in GitHub"
+                         }
+                    ],
+                    "required": [
+                         "token"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "GitHub Personal Access Token",
+                    "kind": "token",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "GitLab Personal Access Token",
+               "description": "",
+               "kind": "token",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "token",
+                              "label": "Token",
+                              "type": "string",
+                              "secret": true,
+                              "help_text": "This token needs to come from your profile settings in GitLab"
+                         }
+                    ],
+                    "required": [
+                         "token"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "GitLab Personal Access Token",
+                    "kind": "token",
+                    "type": "credential_type"
+               }
+          },
+          {
+               "name": "Vault",
+               "description": "",
+               "kind": "vault",
+               "inputs": {
+                    "fields": [
+                         {
+                              "id": "vault_password",
+                              "label": "Vault Password",
+                              "type": "string",
+                              "secret": true,
+                              "ask_at_runtime": true
+                         },
+                         {
+                              "id": "vault_id",
+                              "label": "Vault Identifier",
+                              "type": "string",
+                              "format": "vault_id",
+                              "help_text": "Specify an (optional) Vault ID. This is equivalent to specifying the --vault-id Ansible parameter for providing multiple Vault passwords.  Note: this feature only works in Ansible 2.4+."
+                         }
+                    ],
+                    "required": [
+                         "vault_password"
+                    ]
+               },
+               "injectors": {},
+               "natural_key": {
+                    "name": "Vault",
+                    "kind": "vault",
+                    "type": "credential_type"
+               }
+          }
+     ],
+     "credentials": [
+          {
+               "name": "Ansible Galaxy",
+               "description": "",
+               "organization": null,
+               "inputs": {
+                    "url": "https://galaxy.ansible.com/"
+               },
+               "credential_type": {
+                    "name": "Ansible Galaxy/Automation Hub API Token",
+                    "kind": "galaxy",
+                    "type": "credential_type"
+               },
+               "natural_key": {
+                    "organization": null,
+                    "name": "Ansible Galaxy",
+                    "credential_type": {
+                         "name": "Ansible Galaxy/Automation Hub API Token",
+                         "kind": "galaxy",
+                         "type": "credential_type"
+                    },
+                    "type": "credential"
+               }
+          },
+          {
+               "name": "github cred",
+               "description": "",
+               "inputs": {
+                    "password": "",
+                    "username": "kpisheva@redhat.com"
+               },
+               "organization": {
+                    "name": "home-lab",
+                    "type": "organization"
+               },
+               "credential_type": {
+                    "name": "Source Control",
+                    "kind": "scm",
+                    "type": "credential_type"
+               },
+               "natural_key": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "github cred",
+                    "credential_type": {
+                         "name": "Source Control",
+                         "kind": "scm",
+                         "type": "credential_type"
+                    },
+                    "type": "credential"
+               }
+          },
+          {
+               "name": "infra",
+               "description": "",
+               "organization": null,
+               "inputs": {
+                    "password": "",
+                    "username": "root",
+                    "become_method": "",
+                    "become_username": ""
+               },
+               "credential_type": {
+                    "name": "Machine",
+                    "kind": "ssh",
+                    "type": "credential_type"
+               },
+               "user": {
+                    "username": "admin",
+                    "type": "user"
+               },
+               "natural_key": {
+                    "organization": null,
+                    "name": "infra",
+                    "credential_type": {
+                         "name": "Machine",
+                         "kind": "ssh",
+                         "type": "credential_type"
+                    },
+                    "type": "credential"
+               }
+          },
+          {
+               "name": "pihole",
+               "description": "",
+               "inputs": {
+                    "password": "",
+                    "username": "root",
+                    "become_method": "",
+                    "become_username": ""
+               },
+               "organization": {
+                    "name": "home-lab",
+                    "type": "organization"
+               },
+               "credential_type": {
+                    "name": "Machine",
+                    "kind": "ssh",
+                    "type": "credential_type"
+               },
+               "natural_key": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "pihole",
+                    "credential_type": {
+                         "name": "Machine",
+                         "kind": "ssh",
+                         "type": "credential_type"
+                    },
+                    "type": "credential"
+               }
+          },
+          {
+               "name": "pve",
+               "description": "",
+               "inputs": {
+                    "password": "",
+                    "username": "root",
+                    "become_method": "",
+                    "become_username": ""
+               },
+               "organization": {
+                    "name": "home-lab",
+                    "type": "organization"
+               },
+               "credential_type": {
+                    "name": "Machine",
+                    "kind": "ssh",
+                    "type": "credential_type"
+               },
+               "natural_key": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "pve",
+                    "credential_type": {
+                         "name": "Machine",
+                         "kind": "ssh",
+                         "type": "credential_type"
+                    },
+                    "type": "credential"
+               }
+          }
+     ],
+     "notification_templates": [],
+     "projects": [
+          {
+               "name": "SNO",
+               "description": "",
+               "local_path": "_12__create_sno_iso_0335_pm",
+               "scm_type": "git",
+               "scm_url": "https://github.com/Keyvan-rh/sno-aap.git",
+               "scm_branch": "main",
+               "scm_refspec": "",
+               "scm_clean": false,
+               "scm_track_submodules": false,
+               "scm_delete_on_update": false,
+               "timeout": 0,
+               "scm_update_on_launch": true,
+               "scm_update_cache_timeout": 0,
+               "allow_override": false,
+               "default_environment": null,
+               "credential": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "github cred",
+                    "credential_type": {
+                         "name": "Source Control",
+                         "kind": "scm",
+                         "type": "credential_type"
+                    },
+                    "type": "credential"
+               },
+               "organization": {
+                    "name": "home-lab",
+                    "type": "organization"
+               },
+               "related": {
+                    "schedules": [],
+                    "notification_templates_started": [],
+                    "notification_templates_success": [],
+                    "notification_templates_error": []
+               },
+               "natural_key": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "SNO",
+                    "type": "project"
+               }
+          }
+     ],
+     "inventory": [
+          {
+               "name": "Home lab inventory",
+               "description": "",
+               "kind": "",
+               "host_filter": null,
+               "variables": "---",
+               "organization": {
+                    "name": "home-lab",
+                    "type": "organization"
+               },
+               "related": {
+                    "hosts": [
+                         {
+                              "name": "infra.<your domain>",
+                              "description": "infar box",
+                              "enabled": true,
+                              "instance_id": "",
+                              "variables": "---",
+                              "inventory": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "Home lab inventory",
+                                   "type": "inventory"
+                              },
+                              "related": {
+                                   "groups": []
+                              },
+                              "natural_key": {
+                                   "name": "infra.<your domain>",
+                                   "inventory": {
+                                        "organization": {
+                                             "name": "home-lab",
+                                             "type": "organization"
+                                        },
+                                        "name": "Home lab inventory",
+                                        "type": "inventory"
+                                   },
+                                   "type": "host"
+                              }
+                         },
+                         {
+                              "name": "pihole1.<your domain>",
+                              "description": "PiHole",
+                              "enabled": true,
+                              "instance_id": "",
+                              "variables": "---",
+                              "inventory": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "Home lab inventory",
+                                   "type": "inventory"
+                              },
+                              "related": {
+                                   "groups": []
+                              },
+                              "natural_key": {
+                                   "name": "pihole1.<your domain>",
+                                   "inventory": {
+                                        "organization": {
+                                             "name": "home-lab",
+                                             "type": "organization"
+                                        },
+                                        "name": "Home lab inventory",
+                                        "type": "inventory"
+                                   },
+                                   "type": "host"
+                              }
+                         },
+                         {
+                              "name": "pve.<your domain>",
+                              "description": "proxmox",
+                              "enabled": true,
+                              "instance_id": "",
+                              "variables": "---",
+                              "inventory": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "Home lab inventory",
+                                   "type": "inventory"
+                              },
+                              "related": {
+                                   "groups": []
+                              },
+                              "natural_key": {
+                                   "name": "pve.<your domain>",
+                                   "inventory": {
+                                        "organization": {
+                                             "name": "home-lab",
+                                             "type": "organization"
+                                        },
+                                        "name": "Home lab inventory",
+                                        "type": "inventory"
+                                   },
+                                   "type": "host"
+                              }
+                         }
+                    ],
+                    "groups": []
+               },
+               "natural_key": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "Home lab inventory",
+                    "type": "inventory"
+               }
+          }
+     ],
+     "inventory_sources": [],
+     "job_templates": [
+          {
+               "name": "sno-iso",
+               "description": "",
+               "job_type": "run",
+               "playbook": "sno-iso.yaml",
+               "scm_branch": "",
+               "forks": 0,
+               "limit": "",
+               "verbosity": 0,
+               "extra_vars": "---",
+               "job_tags": "",
+               "force_handlers": false,
+               "skip_tags": "",
+               "start_at_task": "",
+               "timeout": 0,
+               "use_fact_cache": false,
+               "execution_environment": null,
+               "host_config_key": "",
+               "ask_scm_branch_on_launch": false,
+               "ask_diff_mode_on_launch": false,
+               "ask_variables_on_launch": false,
+               "ask_limit_on_launch": false,
+               "ask_tags_on_launch": false,
+               "ask_skip_tags_on_launch": false,
+               "ask_job_type_on_launch": false,
+               "ask_verbosity_on_launch": false,
+               "ask_inventory_on_launch": false,
+               "ask_credential_on_launch": false,
+               "survey_enabled": false,
+               "become_enabled": false,
+               "diff_mode": false,
+               "allow_simultaneous": false,
+               "job_slice_count": 1,
+               "webhook_service": "",
+               "webhook_credential": null,
+               "inventory": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "Home lab inventory",
+                    "type": "inventory"
+               },
+               "project": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "SNO",
+                    "type": "project"
+               },
+               "related": {
+                    "labels": [],
+                    "credentials": [
+                         {
+                              "organization": null,
+                              "name": "infra",
+                              "credential_type": {
+                                   "name": "Machine",
+                                   "kind": "ssh",
+                                   "type": "credential_type"
+                              },
+                              "type": "credential"
+                         }
+                    ],
+                    "schedules": [],
+                    "notification_templates_started": [],
+                    "notification_templates_success": [],
+                    "notification_templates_error": [],
+                    "survey_spec": {
+                         "name": "",
+                         "description": "",
+                         "spec": [
+                              {
+                                   "question_name": "what is the clusterName?",
+                                   "question_description": "",
+                                   "required": true,
+                                   "type": "text",
+                                   "variable": "clusterName",
+                                   "min": 3,
+                                   "max": 4,
+                                   "default": "sno",
+                                   "choices": "",
+                                   "formattedChoices": [
+                                        {
+                                             "choice": "",
+                                             "isDefault": false,
+                                             "id": 0
+                                        }
+                                   ],
+                                   "new_question": false
+                              },
+                              {
+                                   "question_name": "What is the unique ID for this cluster?",
+                                   "question_description": "",
+                                   "required": true,
+                                   "type": "text",
+                                   "variable": "ID",
+                                   "min": 1,
+                                   "max": 2,
+                                   "default": "2",
+                                   "choices": "",
+                                   "new_question": true
+                              }
+                         ]
+                    }
+               },
+               "natural_key": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "sno-iso",
+                    "type": "job_template"
+               }
+          },
+          {
+               "name": "sno-prep",
+               "description": "",
+               "job_type": "run",
+               "playbook": "sno-dns.yaml",
+               "scm_branch": "",
+               "forks": 0,
+               "limit": "",
+               "verbosity": 0,
+               "extra_vars": "---",
+               "job_tags": "",
+               "force_handlers": false,
+               "skip_tags": "",
+               "start_at_task": "",
+               "timeout": 0,
+               "use_fact_cache": false,
+               "host_config_key": "",
+               "ask_scm_branch_on_launch": false,
+               "ask_diff_mode_on_launch": false,
+               "ask_variables_on_launch": false,
+               "ask_limit_on_launch": false,
+               "ask_tags_on_launch": false,
+               "ask_skip_tags_on_launch": false,
+               "ask_job_type_on_launch": false,
+               "ask_verbosity_on_launch": false,
+               "ask_inventory_on_launch": false,
+               "ask_credential_on_launch": false,
+               "survey_enabled": false,
+               "become_enabled": false,
+               "diff_mode": false,
+               "allow_simultaneous": false,
+               "job_slice_count": 1,
+               "webhook_service": "",
+               "webhook_credential": null,
+               "inventory": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "Home lab inventory",
+                    "type": "inventory"
+               },
+               "project": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "SNO",
+                    "type": "project"
+               },
+               "execution_environment": {
+                    "name": "Ansible Engine 2.9 execution environment",
+                    "type": "execution_environment"
+               },
+               "related": {
+                    "labels": [],
+                    "credentials": [
+                         {
+                              "organization": {
+                                   "name": "home-lab",
+                                   "type": "organization"
+                              },
+                              "name": "pihole",
+                              "credential_type": {
+                                   "name": "Machine",
+                                   "kind": "ssh",
+                                   "type": "credential_type"
+                              },
+                              "type": "credential"
+                         }
+                    ],
+                    "schedules": [],
+                    "notification_templates_started": [],
+                    "notification_templates_success": [],
+                    "notification_templates_error": [],
+                    "survey_spec": {
+                         "name": "",
+                         "description": "",
+                         "spec": [
+                              {
+                                   "question_name": "Cluster Name? (exp. sno)",
+                                   "question_description": "",
+                                   "required": true,
+                                   "type": "text",
+                                   "variable": "clusterName",
+                                   "min": 1,
+                                   "max": 10,
+                                   "default": "sno",
+                                   "choices": "",
+                                   "formattedChoices": [
+                                        {
+                                             "choice": "",
+                                             "isDefault": false,
+                                             "id": 0
+                                        }
+                                   ],
+                                   "new_question": false
+                              },
+                              {
+                                   "question_name": "Unique ID for Cluster?(exp. 2)",
+                                   "question_description": "",
+                                   "required": true,
+                                   "type": "text",
+                                   "variable": "ID",
+                                   "min": 1,
+                                   "max": 1,
+                                   "default": "2",
+                                   "choices": "",
+                                   "formattedChoices": [
+                                        {
+                                             "choice": "",
+                                             "isDefault": false,
+                                             "id": 0
+                                        }
+                                   ],
+                                   "new_question": false
+                              }
+                         ]
+                    }
+               },
+               "natural_key": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "sno-prep",
+                    "type": "job_template"
+               }
+          },
+          {
+               "name": "sno-vm",
+               "description": "",
+               "job_type": "run",
+               "playbook": "sno-vm.yaml",
+               "scm_branch": "",
+               "forks": 0,
+               "limit": "",
+               "verbosity": 0,
+               "extra_vars": "---",
+               "job_tags": "",
+               "force_handlers": false,
+               "skip_tags": "",
+               "start_at_task": "",
+               "timeout": 0,
+               "use_fact_cache": false,
+               "execution_environment": null,
+               "host_config_key": "",
+               "ask_scm_branch_on_launch": false,
+               "ask_diff_mode_on_launch": false,
+               "ask_variables_on_launch": false,
+               "ask_limit_on_launch": false,
+               "ask_tags_on_launch": false,
+               "ask_skip_tags_on_launch": false,
+               "ask_job_type_on_launch": false,
+               "ask_verbosity_on_launch": false,
+               "ask_inventory_on_launch": false,
+               "ask_credential_on_launch": false,
+               "survey_enabled": false,
+               "become_enabled": false,
+               "diff_mode": false,
+               "allow_simultaneous": false,
+               "job_slice_count": 1,
+               "webhook_service": "",
+               "webhook_credential": null,
+               "inventory": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "Home lab inventory",
+                    "type": "inventory"
+               },
+               "project": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "SNO",
+                    "type": "project"
+               },
+               "related": {
+                    "labels": [],
+                    "credentials": [
+                         {
+                              "organization": {
+                                   "name": "home-lab",
+                                   "type": "organization"
+                              },
+                              "name": "pve",
+                              "credential_type": {
+                                   "name": "Machine",
+                                   "kind": "ssh",
+                                   "type": "credential_type"
+                              },
+                              "type": "credential"
+                         }
+                    ],
+                    "schedules": [],
+                    "notification_templates_started": [],
+                    "notification_templates_success": [],
+                    "notification_templates_error": [],
+                    "survey_spec": {
+                         "name": "",
+                         "description": "",
+                         "spec": [
+                              {
+                                   "question_name": "What is the SNO cluster name?",
+                                   "question_description": "",
+                                   "required": true,
+                                   "type": "text",
+                                   "variable": "clusterName",
+                                   "min": 4,
+                                   "max": 4,
+                                   "default": "sno",
+                                   "choices": "",
+                                   "formattedChoices": [
+                                        {
+                                             "choice": "",
+                                             "isDefault": false,
+                                             "id": 0
+                                        }
+                                   ],
+                                   "new_question": false
+                              },
+                              {
+                                   "question_name": "What is the unique ID of this cluster",
+                                   "question_description": "",
+                                   "required": true,
+                                   "type": "text",
+                                   "variable": "ID",
+                                   "min": 1,
+                                   "max": 2,
+                                   "default": "2",
+                                   "choices": "",
+                                   "formattedChoices": [
+                                        {
+                                             "choice": "",
+                                             "isDefault": false,
+                                             "id": 0
+                                        }
+                                   ],
+                                   "new_question": false
+                              }
+                         ]
+                    }
+               },
+               "natural_key": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "sno-vm",
+                    "type": "job_template"
+               }
+          }
+     ],
+     "workflow_job_templates": [
+          {
+               "name": "Build a new SNO",
+               "description": "",
+               "extra_vars": "---",
+               "survey_enabled": true,
+               "allow_simultaneous": false,
+               "ask_variables_on_launch": false,
+               "limit": "",
+               "scm_branch": "",
+               "ask_inventory_on_launch": false,
+               "ask_scm_branch_on_launch": false,
+               "ask_limit_on_launch": false,
+               "webhook_service": "",
+               "webhook_credential": null,
+               "organization": {
+                    "name": "home-lab",
+                    "type": "organization"
+               },
+               "inventory": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "Home lab inventory",
+                    "type": "inventory"
+               },
+               "related": {
+                    "schedules": [],
+                    "workflow_nodes": [
+                         {
+                              "extra_data": {
+                                   "clusterName": "sno",
+                                   "ID": "2"
+                              },
+                              "inventory": null,
+                              "scm_branch": null,
+                              "job_type": null,
+                              "job_tags": null,
+                              "skip_tags": null,
+                              "limit": null,
+                              "diff_mode": null,
+                              "verbosity": null,
+                              "all_parents_must_converge": false,
+                              "identifier": "d7188295-3b4f-47cb-b19f-8fe1997fd1e3",
+                              "workflow_job_template": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "Build a new SNO",
+                                   "type": "workflow_job_template"
+                              },
+                              "unified_job_template": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "sno-prep",
+                                   "type": "job_template"
+                              },
+                              "related": {
+                                   "credentials": [],
+                                   "success_nodes": [
+                                        {
+                                             "workflow_job_template": {
+                                                  "organization": {
+                                                       "name": "home-lab",
+                                                       "type": "organization"
+                                                  },
+                                                  "name": "Build a new SNO",
+                                                  "type": "workflow_job_template"
+                                             },
+                                             "identifier": "9c1b72bd-1c85-4126-a09a-481a93fc3ed5",
+                                             "type": "workflow_job_template_node"
+                                        }
+                                   ],
+                                   "failure_nodes": [],
+                                   "always_nodes": []
+                              },
+                              "natural_key": {
+                                   "workflow_job_template": {
+                                        "organization": {
+                                             "name": "home-lab",
+                                             "type": "organization"
+                                        },
+                                        "name": "Build a new SNO",
+                                        "type": "workflow_job_template"
+                                   },
+                                   "identifier": "d7188295-3b4f-47cb-b19f-8fe1997fd1e3",
+                                   "type": "workflow_job_template_node"
+                              }
+                         },
+                         {
+                              "extra_data": {},
+                              "inventory": null,
+                              "scm_branch": null,
+                              "job_type": null,
+                              "job_tags": null,
+                              "skip_tags": null,
+                              "limit": null,
+                              "diff_mode": null,
+                              "verbosity": null,
+                              "all_parents_must_converge": false,
+                              "identifier": "9c1b72bd-1c85-4126-a09a-481a93fc3ed5",
+                              "workflow_job_template": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "Build a new SNO",
+                                   "type": "workflow_job_template"
+                              },
+                              "unified_job_template": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "sno-iso",
+                                   "type": "job_template"
+                              },
+                              "related": {
+                                   "credentials": [],
+                                   "success_nodes": [
+                                        {
+                                             "workflow_job_template": {
+                                                  "organization": {
+                                                       "name": "home-lab",
+                                                       "type": "organization"
+                                                  },
+                                                  "name": "Build a new SNO",
+                                                  "type": "workflow_job_template"
+                                             },
+                                             "identifier": "7e7bec28-f2db-4fd2-a490-e1d5bec52408",
+                                             "type": "workflow_job_template_node"
+                                        }
+                                   ],
+                                   "failure_nodes": [],
+                                   "always_nodes": []
+                              },
+                              "natural_key": {
+                                   "workflow_job_template": {
+                                        "organization": {
+                                             "name": "home-lab",
+                                             "type": "organization"
+                                        },
+                                        "name": "Build a new SNO",
+                                        "type": "workflow_job_template"
+                                   },
+                                   "identifier": "9c1b72bd-1c85-4126-a09a-481a93fc3ed5",
+                                   "type": "workflow_job_template_node"
+                              }
+                         },
+                         {
+                              "extra_data": {},
+                              "inventory": null,
+                              "scm_branch": null,
+                              "job_type": null,
+                              "job_tags": null,
+                              "skip_tags": null,
+                              "limit": null,
+                              "diff_mode": null,
+                              "verbosity": null,
+                              "all_parents_must_converge": false,
+                              "identifier": "7e7bec28-f2db-4fd2-a490-e1d5bec52408",
+                              "workflow_job_template": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "Build a new SNO",
+                                   "type": "workflow_job_template"
+                              },
+                              "unified_job_template": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "sno-vm",
+                                   "type": "job_template"
+                              },
+                              "related": {
+                                   "credentials": [],
+                                   "success_nodes": [],
+                                   "failure_nodes": [],
+                                   "always_nodes": []
+                              },
+                              "natural_key": {
+                                   "workflow_job_template": {
+                                        "organization": {
+                                             "name": "home-lab",
+                                             "type": "organization"
+                                        },
+                                        "name": "Build a new SNO",
+                                        "type": "workflow_job_template"
+                                   },
+                                   "identifier": "7e7bec28-f2db-4fd2-a490-e1d5bec52408",
+                                   "type": "workflow_job_template_node"
+                              }
+                         }
+                    ],
+                    "labels": [],
+                    "notification_templates_started": [],
+                    "notification_templates_success": [],
+                    "notification_templates_error": [],
+                    "notification_templates_approvals": [],
+                    "survey_spec": {
+                         "name": "",
+                         "description": "",
+                         "spec": [
+                              {
+                                   "question_name": "What is the cluster name?",
+                                   "question_description": "",
+                                   "required": true,
+                                   "type": "text",
+                                   "variable": "clusterName",
+                                   "min": 1,
+                                   "max": 4,
+                                   "default": "sno",
+                                   "choices": "",
+                                   "new_question": true
+                              },
+                              {
+                                   "question_name": "What is the unique ID for this cluster?",
+                                   "question_description": "",
+                                   "required": true,
+                                   "type": "text",
+                                   "variable": "ID",
+                                   "min": 1,
+                                   "max": 2,
+                                   "default": "2",
+                                   "choices": "",
+                                   "new_question": true
+                              }
+                         ]
+                    }
+               },
+               "natural_key": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "Build a new SNO",
+                    "type": "workflow_job_template"
+               }
+          }
+     ],
+     "execution_environments": [
+          {
+               "name": "Control Plane Execution Environment",
+               "description": "",
+               "organization": null,
+               "image": "registry.redhat.io/ansible-automation-platform-21/ee-supported-rhel8@sha256:fcf61ec3991907dbf9b90eeaf4d250d95b2183ba1138e899fe08594ac69b2ceb",
+               "credential": null,
+               "pull": "",
+               "natural_key": {
+                    "name": "Control Plane Execution Environment",
+                    "type": "execution_environment"
+               }
+          },
+          {
+               "name": "Default execution environment",
+               "description": "",
+               "organization": null,
+               "image": "registry.redhat.io/ansible-automation-platform-21/ee-supported-rhel8@sha256:fcf61ec3991907dbf9b90eeaf4d250d95b2183ba1138e899fe08594ac69b2ceb",
+               "credential": null,
+               "pull": "",
+               "natural_key": {
+                    "name": "Default execution environment",
+                    "type": "execution_environment"
+               }
+          },
+          {
+               "name": "Ansible Engine 2.9 execution environment",
+               "description": "",
+               "organization": null,
+               "image": "registry.redhat.io/ansible-automation-platform-21/ee-29-rhel8@sha256:f3c0206a0ed7502a47c1563acde91069292734e7bb6efa8479d85893e51b4623",
+               "credential": null,
+               "pull": "",
+               "natural_key": {
+                    "name": "Ansible Engine 2.9 execution environment",
+                    "type": "execution_environment"
+               }
+          },
+          {
+               "name": "Minimal execution environment",
+               "description": "",
+               "organization": null,
+               "image": "registry.redhat.io/ansible-automation-platform-21/ee-minimal-rhel8@sha256:7b19994dd73b3c37052b69b26384c1f63db6592c45a0cade9e7f95ae7b694be4",
+               "credential": null,
+               "pull": "",
+               "natural_key": {
+                    "name": "Minimal execution environment",
+                    "type": "execution_environment"
+               }
+          }
+     ]
+}

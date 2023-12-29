@@ -1,0 +1,249 @@
+{
+     "workflow_job_templates": [
+          {
+               "name": "Build a new SNO",
+               "description": "",
+               "extra_vars": "---",
+               "survey_enabled": true,
+               "allow_simultaneous": false,
+               "ask_variables_on_launch": false,
+               "limit": "",
+               "scm_branch": "",
+               "ask_inventory_on_launch": false,
+               "ask_scm_branch_on_launch": false,
+               "ask_limit_on_launch": false,
+               "webhook_service": "",
+               "webhook_credential": null,
+               "organization": {
+                    "name": "home-lab",
+                    "type": "organization"
+               },
+               "inventory": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "Home lab inventory",
+                    "type": "inventory"
+               },
+               "related": {
+                    "schedules": [],
+                    "workflow_nodes": [
+                         {
+                              "extra_data": {
+                                   "clusterName": "sno",
+                                   "ID": "2"
+                              },
+                              "inventory": null,
+                              "scm_branch": null,
+                              "job_type": null,
+                              "job_tags": null,
+                              "skip_tags": null,
+                              "limit": null,
+                              "diff_mode": null,
+                              "verbosity": null,
+                              "all_parents_must_converge": false,
+                              "identifier": "d7188295-3b4f-47cb-b19f-8fe1997fd1e3",
+                              "workflow_job_template": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "Build a new SNO",
+                                   "type": "workflow_job_template"
+                              },
+                              "unified_job_template": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "sno-prep",
+                                   "type": "job_template"
+                              },
+                              "related": {
+                                   "credentials": [],
+                                   "success_nodes": [
+                                        {
+                                             "workflow_job_template": {
+                                                  "organization": {
+                                                       "name": "home-lab",
+                                                       "type": "organization"
+                                                  },
+                                                  "name": "Build a new SNO",
+                                                  "type": "workflow_job_template"
+                                             },
+                                             "identifier": "9c1b72bd-1c85-4126-a09a-481a93fc3ed5",
+                                             "type": "workflow_job_template_node"
+                                        }
+                                   ],
+                                   "failure_nodes": [],
+                                   "always_nodes": []
+                              },
+                              "natural_key": {
+                                   "workflow_job_template": {
+                                        "organization": {
+                                             "name": "home-lab",
+                                             "type": "organization"
+                                        },
+                                        "name": "Build a new SNO",
+                                        "type": "workflow_job_template"
+                                   },
+                                   "identifier": "d7188295-3b4f-47cb-b19f-8fe1997fd1e3",
+                                   "type": "workflow_job_template_node"
+                              }
+                         },
+                         {
+                              "extra_data": {},
+                              "inventory": null,
+                              "scm_branch": null,
+                              "job_type": null,
+                              "job_tags": null,
+                              "skip_tags": null,
+                              "limit": null,
+                              "diff_mode": null,
+                              "verbosity": null,
+                              "all_parents_must_converge": false,
+                              "identifier": "9c1b72bd-1c85-4126-a09a-481a93fc3ed5",
+                              "workflow_job_template": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "Build a new SNO",
+                                   "type": "workflow_job_template"
+                              },
+                              "unified_job_template": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "sno-iso",
+                                   "type": "job_template"
+                              },
+                              "related": {
+                                   "credentials": [],
+                                   "success_nodes": [
+                                        {
+                                             "workflow_job_template": {
+                                                  "organization": {
+                                                       "name": "home-lab",
+                                                       "type": "organization"
+                                                  },
+                                                  "name": "Build a new SNO",
+                                                  "type": "workflow_job_template"
+                                             },
+                                             "identifier": "7e7bec28-f2db-4fd2-a490-e1d5bec52408",
+                                             "type": "workflow_job_template_node"
+                                        }
+                                   ],
+                                   "failure_nodes": [],
+                                   "always_nodes": []
+                              },
+                              "natural_key": {
+                                   "workflow_job_template": {
+                                        "organization": {
+                                             "name": "home-lab",
+                                             "type": "organization"
+                                        },
+                                        "name": "Build a new SNO",
+                                        "type": "workflow_job_template"
+                                   },
+                                   "identifier": "9c1b72bd-1c85-4126-a09a-481a93fc3ed5",
+                                   "type": "workflow_job_template_node"
+                              }
+                         },
+                         {
+                              "extra_data": {},
+                              "inventory": null,
+                              "scm_branch": null,
+                              "job_type": null,
+                              "job_tags": null,
+                              "skip_tags": null,
+                              "limit": null,
+                              "diff_mode": null,
+                              "verbosity": null,
+                              "all_parents_must_converge": false,
+                              "identifier": "7e7bec28-f2db-4fd2-a490-e1d5bec52408",
+                              "workflow_job_template": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "Build a new SNO",
+                                   "type": "workflow_job_template"
+                              },
+                              "unified_job_template": {
+                                   "organization": {
+                                        "name": "home-lab",
+                                        "type": "organization"
+                                   },
+                                   "name": "sno-vm",
+                                   "type": "job_template"
+                              },
+                              "related": {
+                                   "credentials": [],
+                                   "success_nodes": [],
+                                   "failure_nodes": [],
+                                   "always_nodes": []
+                              },
+                              "natural_key": {
+                                   "workflow_job_template": {
+                                        "organization": {
+                                             "name": "home-lab",
+                                             "type": "organization"
+                                        },
+                                        "name": "Build a new SNO",
+                                        "type": "workflow_job_template"
+                                   },
+                                   "identifier": "7e7bec28-f2db-4fd2-a490-e1d5bec52408",
+                                   "type": "workflow_job_template_node"
+                              }
+                         }
+                    ],
+                    "labels": [],
+                    "notification_templates_started": [],
+                    "notification_templates_success": [],
+                    "notification_templates_error": [],
+                    "notification_templates_approvals": [],
+                    "survey_spec": {
+                         "name": "",
+                         "description": "",
+                         "spec": [
+                              {
+                                   "question_name": "What is the cluster name?",
+                                   "question_description": "",
+                                   "required": true,
+                                   "type": "text",
+                                   "variable": "clusterName",
+                                   "min": 1,
+                                   "max": 4,
+                                   "default": "sno",
+                                   "choices": "",
+                                   "new_question": true
+                              },
+                              {
+                                   "question_name": "What is the unique ID for this cluster?",
+                                   "question_description": "",
+                                   "required": true,
+                                   "type": "text",
+                                   "variable": "ID",
+                                   "min": 1,
+                                   "max": 2,
+                                   "default": "2",
+                                   "choices": "",
+                                   "new_question": true
+                              }
+                         ]
+                    }
+               },
+               "natural_key": {
+                    "organization": {
+                         "name": "home-lab",
+                         "type": "organization"
+                    },
+                    "name": "Build a new SNO",
+                    "type": "workflow_job_template"
+               }
+          }
+     ]
+}

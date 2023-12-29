@@ -1,0 +1,10 @@
+- name: remove the current static ip if it exists from dhcp server
+  ansible.builtin.lineinfile:
+    path: '{{PiholeDHCPConfig}}'
+    state: absent
+    regexp: '{{clusterName}}{{ID}}'
+- name: Add static ip for new SNO in dhcp server
+  ansible.builtin.lineinfile:
+    path: '{{PiholeDHCPConfig}}'
+    line: dhcp-host={{BaseMac}}{{ID}}{{ID}},{{BaseIP}}{{ID}},{{clusterName}}{{ID}}
+    create: yes

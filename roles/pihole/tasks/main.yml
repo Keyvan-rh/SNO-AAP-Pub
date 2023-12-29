@@ -1,0 +1,4 @@
+---
+# tasks file for pihole
+- include_tasks: set_Static_DHCP.yml
+- include_tasks: setup_dns.yml

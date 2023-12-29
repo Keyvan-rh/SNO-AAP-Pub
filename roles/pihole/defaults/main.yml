@@ -1,0 +1,12 @@
+---
+# defaults file for pihole
+domain: <your domain>
+clusterName: sno
+ID: '3'
+BaseMac: '52:50:56:11:44:'
+BaseIP: '192.168.1.16'
+
+PiholeDHCPConfig: /etc/dnsmasq.d/04-pihole-static-dhcp.conf
+PiholeDNSConfig: /etc/dnsmasq.d/99-ocp.conf
+PiholeDNSCustom: /etc/pihole/custom.list
+

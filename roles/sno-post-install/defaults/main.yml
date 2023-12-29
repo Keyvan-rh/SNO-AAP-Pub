@@ -1,0 +1,4 @@
+---
+# defaults file for ansible-automation-platform
+srcDest: /tmp/sno
+ID: '3'

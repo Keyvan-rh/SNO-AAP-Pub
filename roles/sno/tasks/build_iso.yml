@@ -1,0 +1,45 @@
+---
+# tasks file for sno
+- name: cleanup last run files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ srcDest }}{{ID}}"
+- name: Create needed directories 
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ srcDest }}{{ID}}/ocp"
+- name: Setup install-config.yaml 
+  template:
+    src: ./templates/install-config.ocp
+    dest: "{{ srcDest }}{{ID}}/ocp/install-config.yaml"
+    force: yes
+    mode: "u=rw,g=r,o=r"
+- name: download coreos installer and base iso
+  get_url: 
+    url={{ rhcos_download_url }}{{ item }} 
+    dest={{ srcDest }}{{ID}}/.
+    mode='0755'
+  with_items: "{{ rhcos_downloads }}"
+- name: download oc and openshift-install
+  get_url:
+    url={{ client_download_url }}{{ item }}
+    dest={{ srcDest }}{{ID}}/.
+  with_items: "{{ ocp_downloads }}"
+- name: Extract oc
+  ansible.builtin.unarchive:
+    src: '{{ srcDest }}{{ID}}/{{ item }}'
+    dest: /usr/local/bin/.
+    remote_src: yes
+    mode: '755'
+  with_items: "{{ ocp_downloads }}"
+- name: Build iso and copy to proxmox  
+  command: "{{ item }} chdir={{ srcDest }}{{ID}}"
+  with_items:
+    - 'openshift-install --dir=ocp create single-node-ignition-config'
+    - 'cp ocp/bootstrap-in-place-for-live-iso.ign iso.ign'
+    - './coreos-installer iso ignition embed -fi iso.ign rhcos-live.x86_64.iso'
+    - 'scp rhcos-live.x86_64.iso {{ proxmox.name }}:{{ proxmox.iso_path }}{{ clusterName }}{{ID}}-rhcos-live.x86_64.iso'

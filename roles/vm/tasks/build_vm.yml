@@ -1,0 +1,8 @@
+---
+- name: Clone sno template 
+  command: "{{ item }}"
+  with_items:
+    - 'qm clone {{snoCloneVimID}} {{snoVimid}}{{ID}} -full -storage VMs --name {{ clusterName }}{{ID}}'
+    - 'qm set {{snoVimid}}{{ID}} -net0 model=virtio,macaddr="{{BaseMac}}{{ID}}{{ID}}",bridge=vmbr0,firewall=1'
+    - 'qm set {{snoVimid}}{{ID}} --ide2 ISO:iso/{{ clusterName }}{{ID}}-rhcos-live.x86_64.iso,media=cdrom'
+    - 'qm start {{snoVimid}}{{ID}}'

@@ -1,0 +1,26 @@
+apiVersion: v1
+baseDomain: {{ domain }}
+compute:
+- name: worker
+  replicas: 0
+controlPlane:
+  name: master
+  replicas: 1
+metadata:
+  name: {{ clusterName }}{{ID}}
+networking:
+  clusterNetworks:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 10.0.0.0/16
+  networkType: OVNKubernetes
+  serviceNetwork:
+  - 172.30.0.0/16
+platform:
+  none: {}
+fips: false
+bootstrapInPlace:
+  installationDisk: /dev/sda
+pullSecret: '{{ pullSecret }}'
+sshKey: '{{ sshkey }}'

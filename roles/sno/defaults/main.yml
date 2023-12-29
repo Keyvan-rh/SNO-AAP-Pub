@@ -1,0 +1,28 @@
+---
+# defaults file for ansible-automation-platform
+proxmox:
+  private_ip: <proxmox IP>
+  private_subnet: < subnet used in proxmox for VMs 192.168.1. >
+  public_ip: <proxmox IP>
+  public_subnet: < subnet used in proxmox for VMs 192.168.1. >
+  name: 'pve'
+  iso_path: < storage path on proxmox for your iso files '/data/iso/template/iso/' >
+dns_gatway:
+  ip: 0
+srcDest: /tmp/sno
+OCP_VERSION: '4.14'
+OCP_COROS_V: "{{ OCP_VERSION }}/latest"
+OCP_CLIENT_V: latest-{{ OCP_VERSION }}
+clusterName: sno
+ID: '3'
+domain: <your domain>
+rhcos_download_url: https://mirror.openshift.com/pub/openshift-v4/
+rhcos_downloads:
+   - clients/coreos-installer/latest/coreos-installer
+   - dependencies/rhcos/{{ OCP_COROS_V }}/rhcos-live.x86_64.iso
+client_download_url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp/{{ OCP_CLIENT_V }}/
+ocp_downloads:
+   - openshift-install-linux.tar.gz
+   - openshift-client-linux.tar.gz
+pullSecret: <Add Your pullSecret from cloud.redhat.com encolose in single quotes '' >
+sshkey: <Add Your public sshkey created on infra box encolose in single quotes '' >

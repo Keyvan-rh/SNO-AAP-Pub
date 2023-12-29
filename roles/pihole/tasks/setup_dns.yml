@@ -1,0 +1,33 @@
+- name: remove the existing dns entry
+  ansible.builtin.lineinfile:
+    path: '{{PiholeDNSConfig}}'
+    state: absent
+    regexp: '{{clusterName}}{{ID}}'
+- name: Add dns entry for new apps on SNO
+  ansible.builtin.lineinfile:
+    path: '{{PiholeDNSConfig}}'
+    line: address=/.apps.{{clusterName}}{{ID}}.{{domain}}/{{BaseIP}}{{ID}}
+    create: yes
+- name: remove the existing ocp dns entry
+  ansible.builtin.lineinfile:
+    path: '{{PiholeDNSCustom}}'
+    state: absent
+    regexp: '{{clusterName}}{{ID}}'
+- name: add ocp requier dns entries
+  ansible.builtin.lineinfile:
+    path: '{{PiholeDNSCustom}}'
+    line: '{{BaseIP}}{{ID}} {{clusterName}}{{ID}}.{{domain}}'
+    create: yes
+- name: add ocp requier dns entries
+  ansible.builtin.lineinfile:
+    path: '{{PiholeDNSCustom}}'
+    line: '{{BaseIP}}{{ID}} api.{{clusterName}}{{ID}}.{{domain}}'
+    create: yes
+- name: add ocp requier dns entries
+  ansible.builtin.lineinfile:
+    path: '{{PiholeDNSCustom}}'
+    line: '{{BaseIP}}{{ID}} api-int.{{clusterName}}{{ID}}.{{domain}}'
+    create: yes
+- name: Restart Pihole DNS server
+  command: "pihole restartdns"
+
